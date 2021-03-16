@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="ReportSystem">
+    <output-path>$PROJECT_DIR$/../../../Server/1.8-Bungee/proxy/plugins</output-path>
+    <root id="archive" name="ReportSystem.jar">
+      <element id="module-output" name="ReportSystem_MySQL" />
+      <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/plugin.yml" />
+    </root>
+  </artifact>
+</component>
