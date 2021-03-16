@@ -74,7 +74,6 @@ public class Main extends Plugin {
 
     }
 
-    public Main getPlugin() { return plugin; }
     public ConfigManager getConfigManager() { return configManager; }
     public MySQL getMySQL(){ return mySQL; }
     public Utils getUtils() { return utils; }

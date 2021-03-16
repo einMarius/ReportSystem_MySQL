@@ -213,12 +213,44 @@ public class MySQL {
                 team.sendMessage(reportacceptserver);
                 team.sendMessage("");
                 deleteReport(rs.getString("Reportet"));
-                team.connect(ProxyServer.getInstance().getServerInfo(rs.getString("Auf")));
+                team.connect(ProxyServer.getInstance().getPlayer(rs.getString("ReportetName")).getServer().getInfo());
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
         return;
+    }
+
+    public void acceptReport(ProxiedPlayer reportet, ProxiedPlayer team){
+        if(!isConnected())
+            if(!isReportetExisting(reportet.getUniqueId())) {
+                return;
+            }
+        try {
+            try {
+                PreparedStatement ps = con.prepareStatement("SELECT * FROM Reports WHERE Reportet = ?");
+                ps.setString(1, reportet.getUniqueId().toString());
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    String reportacceptname = plugin.getConfigManager().reportacceptname.replace("%PLAYER%", rs.getString("ReportetName"));
+                    String reportacceptgrund = plugin.getConfigManager().reportacceptgrund.replace("%CAUSE%", rs.getString("Grund"));
+                    String reportacceptreporter = plugin.getConfigManager().reportacceptreporter.replace("%PLAYER%", rs.getString("ReporterName"));
+                    String reportacceptserver = plugin.getConfigManager().reportacceptserver.replace("%SERVER%", rs.getString("Auf"));
+                    team.sendMessage("");
+                    team.sendMessage(plugin.getConfigManager().prefix + reportacceptname);
+                    team.sendMessage(reportacceptgrund);
+                    team.sendMessage(reportacceptreporter);
+                    team.sendMessage(reportacceptserver);
+                    team.sendMessage("");
+                    deleteReport(reportet.getUniqueId().toString());
+                    team.connect(ProxyServer.getInstance().getPlayer(reportet.getUniqueId()).getServer().getInfo());
+                }
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        } catch(NullPointerException ex){
+            team.sendMessage(plugin.getConfigManager().prefix + plugin.getConfigManager().isnotreported);
+        }
     }
 
     public void deleteReport(String uuid){

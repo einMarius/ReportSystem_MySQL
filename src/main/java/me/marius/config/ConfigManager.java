@@ -81,7 +81,7 @@ public class ConfigManager {
                 config.set("Report.Login anderes Teammitglied", "%PLAYER% hat sich &aeingeloggt&7.");
                 config.set("Report.Bereits ausgeloggt", "Du bist bereits &causgeloggt&7!");
                 config.set("Report.Logout", "Du hast dich &causgeloggt&7.");
-                config.set("Report.Logout anderes Teammiglied", "&c%PLAYER% &7hat sich ausgeloggt.");
+                config.set("Report.Logout anderes Teammiglied", "%PLAYER% &7hat sich &causgeloggt&7.");
                 config.set("Report.Muss Report schliessen", "Du musst zuerst den &cReport &7schließen! ➡ /&creport finish");
                 config.set("Report.Neuer Report", "&c%PLAYER% &7wurde für &c%CAUSE% &7gemeldet.");
                 config.set("Report.Report erfolgreich", "Du hast &c%PLAYER% &7erfolgreich reportet!");
@@ -130,7 +130,7 @@ public class ConfigManager {
             loggin = config.getString("Report.Login");
             loggin = ChatColor.translateAlternateColorCodes('&', loggin);
 
-            otheruserloggin = config.getString("Report.Login anderes Teammiglied");
+            otheruserloggin = config.getString("Report.Login anderes Teammitglied");
             otheruserloggin = ChatColor.translateAlternateColorCodes('&', otheruserloggin);
 
             alreadyloggedout = config.getString("Report.Bereits ausgeloggt");
